@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add License Plate</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script>
+        // Function to toggle time input visibility
+        function toggleTimeInputs() {
+            var checkbox = document.getElementById('limit-time');
+            var timeInputs = document.getElementById('time-inputs');
+            
+            // Show/Hide time input fields based on checkbox state
+            if (checkbox.checked) {
+                timeInputs.style.display = 'block';  // Show time inputs
+            } else {
+                timeInputs.style.display = 'none';   // Hide time inputs
+                document.getElementById('start_time').value = ''; // Clear start_time
+                document.getElementById('end_time').value = '';   // Clear end_time
+            }
+        }
+
+        // Function to validate the time inputs (both start and end must be filled or none)
+        function validateForm() {
+            var checkbox = document.getElementById('limit-time');
+            var startTime = document.getElementById('start_time').value;
+            var endTime = document.getElementById('end_time').value;
+
+            if (checkbox.checked) {
+                if (!startTime || !endTime) {
+                    alert('Please enter both start time and end time.');
+                    return false;  // Prevent form submission
+                }
+            }
+            return true;  // Allow form submission
+        }
+    </script>
+</head>
+<body> 
+    <h1>Add a License Plate</h1>
+    <form action="/add_plate" method="POST" onsubmit="return validateForm();">
+        <label for="plate">Enter License Plate:</label>
+        <input type="text" id="plate" name="plate" required>
+
+        {% if error %}
+        <div id="error-message" style="color: red; text-align: center;">{{ error }}</div>
+        {% endif %}
+        
+        {% if success %}
+            <div id="success-message" style="color: green; text-align: center;">{{ success }}</div>
+        {% endif %}
+
+
+        <!-- Checkbox to limit entry time -->
+        <input type="checkbox" id="limit-time" style="float: left; margin-top: 5px" name="limit_time" onclick="toggleTimeInputs()">
+        <label for="limit-time">Limit Entry Time</label>
+        
+        <!-- Time inputs (initially hidden) -->
+        <div id="time-inputs" style="display: none;">
+            <label for="start_time">Start Time:</label>
+            <input type="time" id="start_time" name="start_time">
+            
+            <br>
+            
+            <label for="end_time">End Time:</label>
+            <input type="time" id="end_time" name="end_time">
+        </div>
+        
+        <br>
+        <button type="submit">Add Plate</button>
+    </form>
+
+
+    <h2 style="text-align: center;">Existing License Plates</h2>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>License Plate</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plate in plates %}
+                <tr>
+                    <td>{{ plate[0] }}</td>  <!-- ID -->
+                    <td>{{ plate[1] }}</td>  <!-- License Plate -->
+                    <td>{{ plate[2] or 'All day' }}</td>  <!-- Start Time (Display 'All day' if None) -->
+                    <td>{{ plate[3] or 'All day' }}</td>  <!-- End Time (Display 'All day' if None) -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<!-- <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script> -->
