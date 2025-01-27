@@ -101,7 +101,7 @@ This project uses the Wio Terminal board to implement an automatic gate system t
 ---
 
 ## Demo Videos
-[Final Presentation and Demo Video](http://tiny.cc/demofinal)
+[Final Presentation and Demo Video](https://www.canva.com/design/DAGUMuFqVIk/ifCkBYHrdQoFISihAus7Iw/view)
 
 ---
 
