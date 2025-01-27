@@ -38,9 +38,6 @@ This project uses the Wio Terminal board to implement an automatic gate system t
 
 ---
 
-
----
-
 ## Pin Mapping
 
 | **Component**            | **Pin**        | **Function**                                      |
