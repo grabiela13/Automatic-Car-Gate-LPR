@@ -1,6 +1,4 @@
 # Automatic Car Gate with License Plate Recognition
-
-## Group 2
 Authors: Gabriela Ayala & Juan Lajarthe
 
 ---
