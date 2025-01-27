@@ -100,18 +100,6 @@ This project uses the Wio Terminal board to implement an automatic gate system t
 
 ---
 
-## Improvements from Midterm Demo
-- Successfully connected the IP camera for LPR.  
-- Established Serial communication between the Wio Terminal and the Python script.  
-- Implemented emergency scenarios, such as:  
-  - When a car doesn’t move after acceptance.  
-  - When a car doesn’t leave after rejection.  
-  - When a plate is unidentified.  
-- Added manual overrides via the Wio Terminal joystick.  
-- Enhanced user feedback with LED indicators and buzzer alerts.
-
----
-
 ## Demo Videos
 [Final Presentation and Demo Video](http://tiny.cc/demofinal)
 
